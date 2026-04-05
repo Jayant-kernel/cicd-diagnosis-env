@@ -1,5 +1,7 @@
 # cicd_diagnosis_env/server/app.py
 
+import os
+
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import Any, Dict
@@ -71,7 +73,8 @@ def _obs_dict(obs):
 
 def main():
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    port = int(os.environ.get("PORT", 7860))
+    uvicorn.run(app, host="0.0.0.0", port=port)
 
 
 if __name__ == "__main__":
