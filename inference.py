@@ -21,11 +21,11 @@ from cicd_diagnosis_env.models import DiagnoseAction
 
 API_BASE_URL = os.environ.get("API_BASE_URL", "https://api.openai.com/v1")
 MODEL_NAME = os.environ.get("MODEL_NAME", "gpt-4o-mini")
-HF_TOKEN = os.environ.get("HF_TOKEN", "")
+HF_TOKEN = os.environ.get("HF_TOKEN")  # no default — injected by hackathon runner
 ENV_URL = os.environ.get("ENV_URL", "http://localhost:8000")
 NUM_EPISODES = int(os.environ.get("NUM_EPISODES", "10"))
 
-# HF_TOKEN doubles as API key when running on Spaces — fall back to OPENAI_API_KEY locally
+# HF_TOKEN is the API key on Spaces; fall back to OPENAI_API_KEY for local dev
 _api_key = HF_TOKEN or os.environ.get("OPENAI_API_KEY", "no-key")
 llm = OpenAI(api_key=_api_key, base_url=API_BASE_URL)
 
