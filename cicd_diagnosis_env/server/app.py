@@ -1,4 +1,4 @@
-# cicd_diagnosis_env/server/app.py
+# cicd_diagnosis_env.server.app module
 
 import os
 
@@ -79,3 +79,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

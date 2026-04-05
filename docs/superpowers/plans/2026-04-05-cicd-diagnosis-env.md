@@ -18,7 +18,7 @@
 | `cicd_diagnosis_env/models.py` | DiagnoseAction, PipelineObservation, PipelineState Pydantic dataclasses |
 | `cicd_diagnosis_env/server/graders.py` | grade_task1, grade_task2, grade_task3 — return (score, feedback) |
 | `cicd_diagnosis_env/server/environment.py` | CICDEnvironment(Environment) — reset/step/state property |
-| `cicd_diagnosis_env/server/app.py` | FastAPI app — manual routes /reset /step /state /health |
+| `cicd_diagnosis_env.server.app:app` | FastAPI app — manual routes /reset /step /state /health |
 | `cicd_diagnosis_env/client.py` | CICDEnv(EnvClient) — _step_payload, _parse_result, _parse_state |
 | `inference.py` | LLM agent loop — [START]/[STEP]/[END] structured logs |
 | `cicd_diagnosis_env/Dockerfile` | Server container — port 8000 |
@@ -612,12 +612,12 @@ def _extract_summary(log: str) -> str:
 ## Task 5: app.py
 
 **Files:**
-- Create: `cicd_diagnosis_env/server/app.py`
+- Create: `cicd_diagnosis_env.server.app:app`
 
 - [ ] **Step 1: Write app.py with manual FastAPI routes (no create_app helper)**
 
 ```python
-# cicd_diagnosis_env/server/app.py
+# cicd_diagnosis_env.server.app:app
 """
 FastAPI server for the CI/CD Failure Diagnosis environment.
 
@@ -1106,7 +1106,7 @@ cicd_diagnosis_env/Dockerfile
 cicd_diagnosis_env/README.md
 cicd_diagnosis_env/requirements.txt
 cicd_diagnosis_env/server/__init__.py
-cicd_diagnosis_env/server/app.py
+cicd_diagnosis_env.server.app:app
 cicd_diagnosis_env/server/environment.py
 cicd_diagnosis_env/server/log_generator.py
 cicd_diagnosis_env/server/graders.py
@@ -1146,3 +1146,4 @@ openenv validate || echo "SDK not installed — skip"
 ```bash
 pkill -f "uvicorn cicd_diagnosis_env" || true
 ```
+
