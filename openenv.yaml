@@ -4,7 +4,7 @@ version: "0.1.0"
 description: "RL environment for diagnosing CI/CD pipeline failures"
 type: space
 runtime: fastapi
-app: cicd_diagnosis_env.server.app:app
+app: server.app:app
 port: 7860
 action: DiagnoseAction
 observation: PipelineObservation
