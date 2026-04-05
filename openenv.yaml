@@ -1,0 +1,10 @@
+spec_version: 1
+name: cicd_diagnosis_env
+version: "0.1.0"
+description: "RL environment for diagnosing CI/CD pipeline failures"
+type: space
+runtime: fastapi
+app: cicd_diagnosis_env.server.app:app
+port: 8000
+action: DiagnoseAction
+observation: PipelineObservation
