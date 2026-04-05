@@ -1,3 +1,12 @@
+---
+title: CICD Diagnosis Env
+emoji: 🔧
+colorFrom: blue
+colorTo: red
+sdk: docker
+pinned: false
+---
+
 # CI/CD Failure Diagnosis Environment
 
 An OpenEnv RL environment where an agent reads broken CI/CD pipeline logs and diagnoses what went wrong.
