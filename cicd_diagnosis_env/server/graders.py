@@ -52,7 +52,7 @@ def grade_task1(action, meta):
             score -= 0.10
             parts.append(f"penalty(irrelevant:{stage})")
 
-    score = max(0.0, min(1.0, round(score, 4)))
+    score = max(0.01, min(0.99, round(score, 4)))
     return score, f"task1: {', '.join(parts)} => {score}"
 
 
@@ -84,7 +84,7 @@ def grade_task2(action, meta):
         score -= 0.10
         parts.append("penalty(blamed tests not config)")
 
-    score = max(0.0, min(1.0, round(score, 4)))
+    score = max(0.01, min(0.99, round(score, 4)))
     return score, f"task2: {', '.join(parts)} => {score}"
 
 
@@ -123,7 +123,7 @@ def grade_task3(action, meta):
         score -= 0.20
         parts.append("penalty(misclassified as code_bug)")
 
-    score = max(0.0, min(1.0, round(score, 4)))
+    score = max(0.01, min(0.99, round(score, 4)))
     return score, f"task3: {', '.join(parts)} => {score}"
 
 
@@ -133,5 +133,5 @@ _GRADERS = {1: grade_task1, 2: grade_task2, 3: grade_task3}
 def grade(action, meta):
     tid = meta.get("task_id")
     if tid not in _GRADERS:
-        return 0.0, f"unknown task_id {tid}"
+        return 0.01, f"unknown task_id {tid}"
     return _GRADERS[tid](action, meta)
