@@ -43,12 +43,12 @@ class PipelineObservation(Observation):
     task_id: int = 0          # 1=easy 2=medium 3=hard
     attempt: int = 0
     feedback: str = ""
-    score: float = 0.0
+    score: float = 0.01
     # TODO: add structured fields for log sections once we have more task types
 
 
 @dataclass(kw_only=True)
 class PipelineState(State):
-    last_score: float = 0.0
+    last_score: float = 0.01
     task_id: int = 0
     pipeline_name: str = ""

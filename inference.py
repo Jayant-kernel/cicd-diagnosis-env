@@ -71,7 +71,7 @@ def run_episode(env, ep_num):
     rewards = []
     steps = 0
     success = False
-    score = 0.0
+    score = 0.01
 
     for step in range(1, MAX_STEPS + 1):
         error = None
@@ -81,16 +81,16 @@ def run_episode(env, ep_num):
         except Exception as e:
             error = str(e)
             action_str = "diagnose(error)"
-            log_step(step, action_str, 0.0, True, error)
-            rewards.append(0.0)
+            log_step(step, action_str, 0.01, True, error)
+            rewards.append(0.01)
             steps = step
             break
 
         obs = env.step(action)
-        reward = obs.reward if obs.reward is not None else 0.0
+        reward = obs.reward if obs.reward is not None else 0.01
         rewards.append(reward)
         steps = step
-        score = obs.score
+        score = obs.score if obs.score > 0 else 0.01
 
         log_step(step, action_str, reward, obs.done, error)
 
@@ -109,7 +109,7 @@ def main():
             run_episode(env, ep)
         except Exception as e:
             print(f"[DEBUG] episode {ep} error: {e}", file=sys.stderr, flush=True)
-            log_end(success=False, steps=0, score=0.0, rewards=[])
+            log_end(success=False, steps=0, score=0.01, rewards=[0.01])
 
 
 if __name__ == '__main__':

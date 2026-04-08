@@ -41,13 +41,13 @@ Given a synthetic pipeline failure log, the agent must:
 ```bash
 # Build and run the server
 docker build -t cicd-env .
-docker run -p 8000:8000 cicd-env
+docker run -p 7860:7860 cicd-env
 
 # Run the LLM agent
 export API_BASE_URL=https://api.openai.com/v1
 export MODEL_NAME=gpt-4o-mini
 export OPENAI_API_KEY=sk-...
-export ENV_URL=http://localhost:8000
+export ENV_URL=http://localhost:7860
 python inference.py
 ```
 
