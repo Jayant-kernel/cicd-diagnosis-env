@@ -31,16 +31,16 @@ class CICDEnvironment(Environment):
         self._state = PipelineState(episode_id=str(uuid.uuid4()), step_count=0)
         self._state.task_id = self._meta["task_id"]
         self._state.pipeline_name = self._meta.get("failed_stage", "unknown")
-        self._state.last_score = 0.0
+        self._state.last_score = 0.01
         summary = _extract_summary(self._log)
-        obs = PipelineObservation(done=False, reward=0.0)
+        obs = PipelineObservation(done=False, reward=0.01)
         obs.pipeline_log = self._log
         obs.error_summary = summary
         obs.pipeline_stage = self._meta["failed_stage"]
         obs.task_id = self._meta["task_id"]
         obs.attempt = 0
         obs.feedback = ""
-        obs.score = 0.0
+        obs.score = 0.01
         return obs
 
     def step(self, action):
@@ -54,7 +54,7 @@ class CICDEnvironment(Environment):
         self._state.last_score = score
 
         # TODO: track per-episode score history for better feedback
-        done = score >= 1.0 or step_num >= MAX_STEPS
+        done = score >= 0.99 or step_num >= MAX_STEPS
 
         obs = PipelineObservation(done=done, reward=score)
         obs.pipeline_log = self._log
